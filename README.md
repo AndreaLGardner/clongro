@@ -27,6 +27,9 @@ First, we show how to determine the exponential growth rate of a bulk population
 
 ${N_{pop}}_f = {N_{pop}}_0exp{(Rt)}$
 
+![test](https://latex.codecogs.com/svg.image?\large&space;${N_{pop}}_f={N_{pop}}_{0}exp{(Rt)}$)
+
+
 Solving for growth rate ${R}$ as:
 
 $R = {\dfrac{1}{t}}log \Biggl({\dfrac{{N_{pop}}_f}{{N_{pop}}_0}}\Biggr)$
