@@ -9,6 +9,7 @@ pip install clongro
 ```
 
 #### How it works
+![variables](./images/variables.png)
 $t_0$ : Initial time $[h]$\
 $t_f$ : Final time $[h]$\
 $t :$ Time in hours between $t_0$ and $t_f$ $[h]$\
@@ -25,48 +26,36 @@ ___
 
 First, we show how to determine the exponential growth rate of a bulk population from:
 
-${N_{pop}}_f = {N_{pop}}_0exp{(Rt)}$
-
-test1
-![test](https://latex.codecogs.com/svg.image?\large&space;\bg{white}${N_{pop}}_f={N_{pop}}_{0}exp{(Rt)}$)
-
-test2
-![test2](https://github.com/AndreaLGardner/clongro/blob/main/images/equation_1_exponential_bulk.svg)
-
-test3
-![test3](./images/equation_1_exponential_bulk.svg)
-
-
+<img src="./images/equation_1_exponential_bulk.png" height="50">
 
 Solving for growth rate ${R}$ as:
 
-$R = {\dfrac{1}{t}}log \Biggl({\dfrac{{N_{pop}}_f}{{N_{pop}}_0}}\Biggr)$
-
+<img src="./images/equation_2_exponential_bulk_R.png" height="80">
 
 Now, if we want to determine the growth rate of each clone in the population, we can use the same equation as above but for each clone $i$ from:
 
-${N_f}_i = {N_0}_iexp{(r_i*t)}$
+<img src="./images/equation_3_exponential_clonal.png" height="60">
 
 Solving for clonal growth rate ${r}_i$ as:
 
-$r_i = {\dfrac{1}{t}}log({\dfrac{{N_f}_i}{{N_0}_i}})$
+<img src="./images/equation_4_exponential_clonal_ri.png" height="85">
 
 
 From targeted barcode sequencing data we know the percent of each clone in the population. Given that we know the size of the bulk population (${N_{pop}}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
 
-$N_i = {N_{pop}}(\dfrac{percent_i}{100})$
+<img src="./images/equation_5_N_percent.png" height="70">
 
 This can be used as ${N_f}_i$ and ${N_0}$ in the clonal growth rate equation:
 
-$r_i = {\dfrac{1}{t}}log({\dfrac{{{N_{pop}}_f}({percent_i}_f /\ {100})}{{{{N_{pop}}_0}({percent_i}_0 /\ {100})}}}$
+<img src="./images/equation_6_clonal_ri_percent.png" height="70">
 
 Which given log rules can be re-written as:
 
-$r_i = {\dfrac{1}{t}}log({\dfrac{{{N_{pop}}_f}}{{N_{pop}}_0}}) + {\dfrac{1}{t}}log(\dfrac{{percent_i}_0}{{percent_i}_f})$
+<img src="./images/equation_7_clonal_ri_percent_split.png" height="70">
 
 In this form, we note that the first term on the right side of the equation is simply the growth rate of the total population $R$ and the second term becomes a scaling factor for each clone.
 
-$r_i = R + {\dfrac{1}{t}}log(\dfrac{{percent_i}_0}{{percent_i}_f})$
+<img src="./images/equation_8_clonal_ri_from_bulk.png" height="65">
 
 `clongro` uses the percent of each clone from targeted barcode sequencing and the time between each targeted sequencing run to calculate this growth rate scaling factor for each clone. 
 
