@@ -38,24 +38,24 @@ ${N_f}_i = {N_0}_iexp{(r_i*t)}$
 
 Solving for clonal growth rate ${r}_i$ as:
 
-$r_i = {\dfrac{1}{t}}log \Biggl({\dfrac{{N_f}_i}{{N_0}_i}}\Biggr)$
+$r_i = {\dfrac{1}{t}}log({\dfrac{{N_f}_i}{{N_0}_i}})$
 
 
 From targeted barcode sequencing data we know the percent of each clone in the population. Given that we know the size of the bulk population (${N_{pop}}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
 
-$N_i = {N_{pop}}*\Biggl(\dfrac{percent_i}{100}\Biggr)$
+$N_i = {N_{pop}}(\dfrac{percent_i}{100})$
 
 This can be used as ${N_f}_i$ and ${N_0}$ in the clonal growth rate equation:
 
-$r_i = {\dfrac{1}{t}}*log \Biggl({\dfrac{{{N_{pop}}_f}\Bigl({percent_i}_f /\ {100}\Bigr)}{{{{N_{pop}}_0}*\Bigl({percent_i}_0 /\ {100}\Bigr)}}}\Biggr)$
+$r_i = {\dfrac{1}{t}}log({\dfrac{{{N_{pop}}_f}({percent_i}_f /\ {100})}{{{{N_{pop}}_0}({percent_i}_0 /\ {100})}}}$
 
 Which given log rules can be re-written as:
 
-$r_i = {\dfrac{1}{t}}log\Biggl({\dfrac{{{N_{pop}}_f}}{{N_{pop}}_0}}\Biggr) + {\dfrac{1}{t}}log\Biggl(\dfrac{{percent_i}_0}{{percent_i}_f}\Biggr)$
+$r_i = {\dfrac{1}{t}}log({\dfrac{{{N_{pop}}_f}}{{N_{pop}}_0}}) + {\dfrac{1}{t}}log(\dfrac{{percent_i}_0}{{percent_i}_f})$
 
 In this form, we note that the first term on the right side of the equation is simply the growth rate of the total population $R$ and the second term becomes a scaling factor for each clone.
 
-$r_i = R + {\dfrac{1}{t}}log\Biggl(\dfrac{{percent_i}_0}{{percent_i}_f}\Biggr)$
+$r_i = R + {\dfrac{1}{t}}log(\dfrac{{percent_i}_0}{{percent_i}_f})$
 
 `clongro` uses the percent of each clone from targeted barcode sequencing and the time between each targeted sequencing run to calculate this growth rate scaling factor for each clone. 
 
