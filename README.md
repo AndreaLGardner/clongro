@@ -20,17 +20,17 @@ ___
 
 ```math
 \begin{array}{l}
-t_0 : \text{Initial time } [h] \\
-t_f : \text{Final time } [h] \\
-t : \text{Time in hours between } t_0 \text{ and }  t_f \text{ }[h]\\
-{N_{pop}}_0 : \text{Total number of cells in the bulk population at initial time } t_0 \text{ }[cells] \\
-{N_{pop}}_f : \text{Total number of cells in the bulk population at final time }  t_f \text{ }[cells] \\
-R : \text{Growth rate of bulk population } [h^{-1}]\\
-{N_0}_i: \text{Initial number of cells of clone $i$ in the population at initial time } t_0 \text{ }[cells] \\
-{N_f}_i: \text{Final number of cells of clone $i$ in the population at final time } t_f \text{ }[cells] \\
-{r}_i : \text{Growth rate of clone } i \text{ }[h^{-1}] \\
-{percent_i}_0 : \text{Percent of clone $i$ in the bulk population at initial time } t_0 \text{ }[percent] \\
-{percent_i}_f : \text{Percent of clone $i$ in the bulk population at final time } t_f \text{ }[percent]\\
+t_0 : \text{ Initial time } [h] \\
+t_f : \text{ Final time } [h] \\
+t : \text{ Time in hours between } t_0 \text{ and }  t_f \text{ }[h]\\
+{N_{pop}}_0 : \text{ Total number of cells in the bulk population at initial time } t_0 \text{ }[cells] \\
+{N_{pop}}_f : \text{ Total number of cells in the bulk population at final time }  t_f \text{ }[cells] \\
+R : \text{ Growth rate of bulk population } [h^{-1}]\\
+{N_0}_i: \text{ Initial number of cells of clone $i$ in the population at initial time } t_0 \text{ }[cells] \\
+{N_f}_i: \text{ Final number of cells of clone $i$ in the population at final time } t_f \text{ }[cells] \\
+{r}_i : \text{ Growth rate of clone } i \text{ }[h^{-1}] \\
+{percent_i}_0 : \text{ Percent of clone $i$ in the bulk population at initial time } t_0 \text{ }[percent] \\
+{percent_i}_f : \text{ Percent of clone $i$ in the bulk population at final time } t_f \text{ }[percent]\\
 \end{array}
 ```
 
