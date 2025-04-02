@@ -12,6 +12,7 @@ def main():
     parser.add_argument('--growths', type=str, help="(optional) Path to file with bulk growth rates for each sample group. Required columns: 'sample_group', 'bulk_growth_rate'.", required=False)
     parser.add_argument('--pop-growth-rate', type=float, help="(optional, numeric) Average growth rate of population [1/hr]. Only use for single sample studies or when population growth rate should be the same for all sample groups.", required=False)
     parser.add_argument('--outs', type=str, help="(optional) Name of output file", required=False)
+    parser.add_argument('--drop-empty', type=bool, default=True, help="Drop samples without growth rate estimates from outputs", required=False)
     args = parser.parse_args()
     try:
         df = load_data(args.data)
@@ -40,6 +41,9 @@ def main():
 
         # run growth rate estimator
         outs = est_growth(df, time_meta, pop_growths)
+
+        if args.drop_empty is True:
+            outs = outs.drop_nulls().drop(["sample","time","timef"])
 
         # save outputs to csv
         if args.outs is None:
