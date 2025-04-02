@@ -51,6 +51,12 @@ Which given log rules can be re-written as:
 
 <img src="./images/equation_7_clonal_ri_percent_split.png" height="70">
 
+test
+```math
+r_i = {\dfrac{1}{t}}log\Biggl({\dfrac{{{N_{pop}}_f}}{{N_{pop}}_0}}\Biggr) + {\dfrac{1}{t}}log\Biggl(\dfrac{{percent_i}_0}{{percent_i}_f}\Biggr)
+```
+end-test
+
 In this form, we note that the first term on the right side of the equation is simply the growth rate of the total population $R$ and the second term becomes a scaling factor for each clone.
 
 <img src="./images/equation_8_clonal_ri_from_bulk.png" height="65">
