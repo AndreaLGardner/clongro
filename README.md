@@ -9,21 +9,14 @@ pip install clongro
 ```
 
 #### How it works
-![variables](./images/variables.png)
-$t_0$ : Initial time $[h]$\
-$t_f$ : Final time $[h]$\
-$t :$ Time in hours between $t_0$ and $t_f$ $[h]$\
-${N_{pop}}_0$ : Total number of cells in the bulk population at inital time $t_0$ $[cells]$\
-${N_{pop}}_f$ : Total number of cells in the bulk population at final time $t_f$ $[cells]$\
-$R :$ Growth rate of bulk population $[h^{-1}]$\
-${N_0}_i:$ Initial number of cells of clone $i$ in the population at inital time $t_0$ $[cells]$\
-${N_f}_i:$ Final number of cells of clone $i$ in the population at final time $t_f$ $[cells]$\
-${r}_i :$ Growth rate of clone $i$ $[h^{-1}]$\
-${percent_i}_0$ : Percent of clone $i$ in the bulk population at inital time $t_0$ $[percent]$\
-${percent_i}_f$ : Percent of clone $i$ in the bulk population at final time $t_f$ $[percent]$
 ___
 
+###### Variables
+<img src="./images/variables.png" width="600">
 
+___
+
+###### Derivation 
 First, we show how to determine the exponential growth rate of a bulk population from:
 
 <img src="./images/equation_1_exponential_bulk.png" height="50">
