@@ -18,8 +18,8 @@ $R :$ Growth rate of bulk population $[h^{-1}]$\
 ${N_0}_i:$ Initial number of cells of clone $i$ in the population at inital time $t_0$ $[cells]$\
 ${N_f}_i:$ Final number of cells of clone $i$ in the population at final time $t_f$ $[cells]$\
 ${r}_i :$ Growth rate of clone $i$ $[h^{-1}]$\
-${percent_i}_0$ : Percent of clone $i$ in the bulk population at inital time $t_0$ $[\%]$\
-${percent_i}_f$ : Percent of clone $i$ in the bulk population at final time $t_f$ $[\%]$
+${percent_i}_0$ : Percent of clone $i$ in the bulk population at inital time $t_0$ $[percent]$\
+${percent_i}_f$ : Percent of clone $i$ in the bulk population at final time $t_f$ $[percent]$
 ___
 
 
