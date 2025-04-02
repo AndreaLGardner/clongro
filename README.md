@@ -172,5 +172,17 @@ clongro --data data/test_data_2/data.tsv --meta data/test_data_2/meta.csv --grow
 
 
 #### Understanding outputs
-The returned outputs will retain columns supplied in the meta data files and will minimally have columns for 'barcode', 'sample', 'sample_group', 'duration', 'est_r_i', 'bulk_growth', and 'est_r_i_scaled'
+The returned outputs will retain columns supplied in the meta data files and will minimally have columns for 'barcode', 'sample_group', 'interval', 'duration', 'est_r_i', 'bulk_growth', and 'est_r_i_scaled'.
 
+Barcodes which were not detected in both timepoints are removed by default, to return all data including null values in the output, use the flag `--drop-empty False`
+
+Column info:
+- barcode: name of the clone
+- sample_group: the group containing the set of before and after data used to estimate this growth rate
+- interval: exact time interval used for this calculation, i.e. time0_timef $[h]$
+- duration: time beween initial and final timepoints (equivalent to $t$ in the exponential growth equations) $[h]$
+- est_r_i : unscaled relative growth rate (i.e. the mathematically derived 'growth rate scaling factor') $[h^{-1}]$
+- bulk_growth: the bulk population growth rate ($R$) supplied by the user. Default is 0. $[h^{-1}]$
+- est_r_i_scaled : scaled growth rate (i.e. $r_i$ ) $[h^{-1}]$
+
+The most important output is `est_r_i_scaled` this is the estimated growth rate of for each barcode within each sample group. If bulk growth rate ($R$) was provided, than `est_r_i_scaled` is closer to true estimate of growth rate. If bulk growth rate was not provided, this is a relative estimate of clonal growth rate compared the the population average.
