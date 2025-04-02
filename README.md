@@ -2,13 +2,18 @@
 
 Simple code to estimate the exponential growth rate of each clone in a barcoded cell population from targeted barcode sequencing data from at least two timepoints.
 
-#### Getting started
+### Getting started
 Install `clongro` using pip:
 ```
 pip install clongro
 ```
 
-#### How it works
+Run an example data set
+```
+clongro --data data/test_data_1/data.tsv --meta data/test_data_1/meta.csv --pop-growth-rate 0.02 --outs clongro_test_data_1_outs
+```
+
+### How it works
 ___
 
 ###### Variables
@@ -59,7 +64,7 @@ If the growth rate of the bulk population R is not know, then `clongro` uses $R=
 
 
 
-#### Required inputs
+### Required inputs
 `clongro` requires two input tsv/csv files and can be run simply as:
 
 ```
@@ -91,7 +96,7 @@ When `clongro` is run with just `--data` and `--meta`, it will return a csv (def
 
 
 
-#### Optional inputs to estimate true growth rate
+### Optional inputs to estimate true growth rate
 
 ##### Single population growth rate for all sample groups
 If you are only running one sample_group or all sample_groups are estimated to have the same bulk population growth rate ($R$), then the bulk population growth rate in $h^{-1}$ can be supplied at the command line. To call this option at the command line, use the `--pop-growth-rate` flag, i.e.:
@@ -121,7 +126,7 @@ clongro --data {PATH_TO_YOUR_BARCODE_DATA} --meta {PATH_TO_YOUR_METADATA} --grow
 
 
 
-#### More complex meta data sample_group examples
+### More complex meta data sample_group examples
 
 In the meta data file, sample_group can also be used to map a single sample to multiple groups using comma separation, such as the case where multiple replicates are split off from a shared initial timepoint, e.g.
 
@@ -150,7 +155,7 @@ Or if sequential passaging was performed, the sample_group column can contain mu
 | JA22214-1KB3-P31 | H            | 31      | 1152 |
 
 
-#### Running example data
+### Running example data
 Two data sets are provided which can be run as examples, to learn more about the unique setups in each experiment, refererence the ABOUT.md files in each test_data subdirectory.
 
 To run test data set #1
@@ -164,7 +169,7 @@ clongro --data data/test_data_2/data.tsv --meta data/test_data_2/meta.csv --grow
 ```
 
 
-#### Understanding outputs
+### Understanding outputs
 The returned outputs will retain columns supplied in the meta data files and will minimally have columns for 'barcode', 'sample_group', 'interval', 'duration', 'est_r_i', 'bulk_growth', and 'est_r_i_scaled'.
 
 Barcodes which were not detected in both timepoints are removed by default, to return all data including null values in the output, use the flag `--drop-empty False`
