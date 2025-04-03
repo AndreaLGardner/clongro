@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "clongro"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple code to estimate the exponential growth rate of each clone in a barcoded cell population."
 readme = "README.md"
 authors = [
