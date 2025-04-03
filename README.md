@@ -19,18 +19,18 @@ ___
 ###### Variables
 
 ```math
-\begin{array}{l}
+\begin{array}{ll}
 t_0 : \text{ Initial time } [h] \\
 t_f : \text{ Final time } [h] \\
 t : \text{ Time in hours between } t_0 \text{ and }  t_f \text{ }[h]\\
 {N_{pop}}_0 : \text{ Total number of cells in the bulk population at initial time } t_0 \text{ }[cells] \\
 {N_{pop}}_f : \text{ Total number of cells in the bulk population at final time }  t_f \text{ }[cells] \\
 R : \text{ Growth rate of bulk population } [h^{-1}]\\
-{N_0}_i: \text{ Initial number of cells of clone $i$ in the population at initial time } t_0 \text{ }[cells] \\
-{N_f}_i: \text{ Final number of cells of clone $i$ in the population at final time } t_f \text{ }[cells] \\
+{N_0}_i: \text{ Initial number of cells of clone } i \text{ in the population at initial time } t_0 \text{ }[cells] \\
+{N_f}_i: \text{ Final number of cells of clone } i \text{ in the population at final time } t_f \text{ }[cells] \\
 {r}_i : \text{ Growth rate of clone } i \text{ }[h^{-1}] \\
-{percent_i}_0 : \text{ Percent of clone } i { in the bulk population at initial time } t_0 \text{ }[percent] \\
-{percent_i}_f : \text{ Percent of clone} i { in the bulk population at final time } t_f \text{ }[percent]\\
+{percent_i}_0 : \text{ Percent of clone } i \text{ in the bulk population at initial time } t_0 \text{ }[percent] \\
+{percent_i}_f : \text{ Percent of clone } i \text{ in the bulk population at final time } t_f \text{ }[percent]\\
 \end{array}
 ```
 
@@ -102,7 +102,7 @@ If the growth rate of the bulk population R is not know, then `clongro` uses $R=
 clongro --data {PATH_TO_YOUR_BARCODE_DATA} --meta {PATH_TO_YOUR_METADATA}
 ```
 
-1. `--data` A csv or tsv in long format with named columns for 'barcode', 'sample', and 'percent'. If you have run pycashier on your targetted sequencing data, results of [`pycashier`](https://github.com/brocklab/pycashier) 'receipt' can be used directly here. This can be formatted manually, but ensure that each barcode gets a unique row for each sample/timepoint.
+1. `--data` A csv or tsv in long format with named columns for 'barcode', 'sample', and 'percent'. If you have run pycashier on your targetted sequencing data, outputs from [`pycashier`](https://github.com/brocklab/pycashier) [`receipt`](https://docs.brocklab.com/pycashier/usage.html#receipt) can be used directly here. This can be formatted manually, but ensure that each barcode gets a unique row for each sample/timepoint.
 
 2. `--meta` A csv or tsv with named columns for 'sample', 'time', and 'sample_group'. This maps each sample to a specific experimental timepoint. The time column should be in hours. If you are only running one experiment, then sample_group can be left blank or you can give both samples the same sample_group name, e.g. 'A' in the example below
 
