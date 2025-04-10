@@ -3,7 +3,7 @@
 import argparse
 import polars as pl
 import os
-from .core import load_data, load_metadata, load_bulk_growth_rates, est_growth#* # new_function
+from .core import load_data, load_metadata, load_bulk_growth_rates, est_growth
 
 def main():
     parser = argparse.ArgumentParser(description="Process raw data file.")
@@ -27,12 +27,14 @@ def main():
                 print(f"... Assign '--pop-growth-rate' or provide a csv of sample_group growth rates using '--growths' for scaled estimates.")
                 print("\n")
                 # make 0's growth data frame
-                pop_growths = pl.DataFrame({"sample_group":time_meta["sample_group"].unique()}).with_columns(pl.lit(0).cast(pl.Float64).alias("bulk_growth_rate_R"))
+                #pop_growths = pl.DataFrame({"sample_group":time_meta["sample_group"].unique()}).with_columns(pl.lit(0).cast(pl.Float64).alias("bulk_growth_rate_R"))
+                pop_growths = pl.DataFrame({"sample_group":time_meta["sample_group"].unique()}).with_columns(pl.lit(0).cast(pl.Float64).alias("bulk_growth_rate_R")).with_columns(pl.col("sample_group").str.split(",")).explode("sample_group").unique()
             else:
                 print(f"... Using input of *** R = {args.pop_growth_rate} [1/hr] *** as bulk population growth rate for all sample groups.")
                 print("\n")
                 # make growth data frame from mean_pop_rate
-                pop_growths = pl.DataFrame({"sample_group":time_meta["sample_group"].unique()}).with_columns(pl.lit(args.pop_growth_rate).cast(pl.Float64).alias("bulk_growth_rate_R"))
+                #pop_growths = pl.DataFrame({"sample_group":time_meta["sample_group"].unique()}).with_columns(pl.lit(args.pop_growth_rate).cast(pl.Float64).alias("bulk_growth_rate_R"))
+                pop_growths = pl.DataFrame({"sample_group":time_meta["sample_group"].unique()}).with_columns(pl.lit(args.pop_growth_rate).cast(pl.Float64).alias("bulk_growth_rate_R")).with_columns(pl.col("sample_group").str.split(",")).explode("sample_group").unique()
         else:
             print(f"Returning scaled growth rates for each sample group.")
             print("\n")

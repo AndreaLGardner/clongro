@@ -1,6 +1,9 @@
 
 # History
 
+### 0.1.3 (2025-04-10)
+- Found bug in multiple sample_group handling, fixed.
+
 ### 0.1.2 (2025-04-10)
 - Refactored code, added new error calling, updated typos in README
 
