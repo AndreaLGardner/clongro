@@ -47,7 +47,7 @@ First, we show how to determine the exponential growth rate of a bulk population
 Solving for growth rate ${R}$ as:
 
 ```math
-R = {\dfrac{1}{t}}log \Biggl({\dfrac{{N_{pop}}_f}{{N_{pop}}_0}}\Biggr)
+R = {\dfrac{1}{t}}ln \Biggl({\dfrac{{N_{pop}}_f}{{N_{pop}}_0}}\Biggr)
 ```
 
 Now, if we want to determine the growth rate of each clone in the population, we can use the same equation as above but for each clone $i$ from:
@@ -59,7 +59,7 @@ Now, if we want to determine the growth rate of each clone in the population, we
 Solving for clonal growth rate ${r}_i$ as:
 
 ```math
-r_i = {\dfrac{1}{t}}log\Biggl({\dfrac{{N_f}_i}{{N_0}_i}}\Biggr)
+r_i = {\dfrac{1}{t}}ln\Biggl({\dfrac{{N_f}_i}{{N_0}_i}}\Biggr)
 ```
 
 From targeted barcode sequencing data, we can find clonal abundance as the percent of each clone in the population (${percent}_{i}$). If we know the size of the bulk population (${N_{pop}}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
@@ -71,19 +71,19 @@ N_i = {N_{pop}}\biggl(\dfrac{percent_i}{100}\biggr)
 This can be used as ${N_f}_i$ and ${N_0}$ in the clonal growth rate equation:
 
 ```math
-r_i = {\dfrac{1}{t}}log\Biggl({\dfrac{{{N_{pop}}_f}({percent_i}_f /\ {100})}{{{{N_{pop}}_0}({percent_i}_0 /\ {100})}}}\Biggr)
+r_i = {\dfrac{1}{t}}ln\Biggl({\dfrac{{{N_{pop}}_f}({percent_i}_f /\ {100})}{{{{N_{pop}}_0}({percent_i}_0 /\ {100})}}}\Biggr)
 ```
 
 Which given log rules can be re-written as:
 
 ```math
-r_i = {\dfrac{1}{t}}log\Biggl({\dfrac{{{N_{pop}}_f}}{{N_{pop}}_0}}\Biggr) + {\dfrac{1}{t}}log\Biggl(\dfrac{{percent_i}_f}{{percent_i}_0}\Biggr)
+r_i = {\dfrac{1}{t}}ln\Biggl({\dfrac{{{N_{pop}}_f}}{{N_{pop}}_0}}\Biggr) + {\dfrac{1}{t}}ln\Biggl(\dfrac{{percent_i}_f}{{percent_i}_0}\Biggr)
 ```
 
 In this form, we note that the first term on the right side of the equation is simply the growth rate of the total population $R$ and the second term becomes a scaling factor for each clone.
 
 ```math
-r_i = R + {\dfrac{1}{t}}log\biggl(\dfrac{{percent_i}_f}{{percent_i}_0}\biggr)
+r_i = R + {\dfrac{1}{t}}ln\biggl(\dfrac{{percent_i}_f}{{percent_i}_0}\biggr)
 ```
 
 `clongro` uses the percent of each clone from targeted barcode sequencing and the time between each targeted sequencing run to calculate this growth rate scaling factor for each clone. 
