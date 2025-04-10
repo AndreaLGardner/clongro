@@ -1,6 +1,7 @@
 # src/growclonego/core.py
 
 import polars as pl
+from .utils import check_columns, check_sample_group
 
 def load_data(file_path: str):
     """
@@ -23,23 +24,25 @@ def load_data(file_path: str):
 
         # Check if the required columns are present
         required_columns = {'barcode', 'sample', 'percent'}
-        missing_columns = required_columns - set(df.columns)
-
-        # if columns are missing, raise an error
-        if missing_columns:
-                raise ValueError(f"Missing required column(s): {', '.join(missing_columns)}")
+        check_columns(df, req_cols = required_columns)
         return df
+
     # if file path is bad, raise an error
     except Exception as e:
-        raise ValueError(f"Error file not found at {file_path}: {e}")
+        raise ValueError(f"Error loading barcode data {file_path}: {e}")
 
 
 def load_metadata(file_path: str):
     """
-    Loads sample metadata from the given file path.
+    Loads sample metadata from the given file path. 
+    Checks for required columns and checks for valid 'sample' to 'sample_group' mapping
 
     Data must have named columns for
     'sample', 'time' in hours, and 'sample_group'.
+
+    Sample names in 'sample' must match sample names in your data file.
+    
+    Each 'sample_group' must map to exactly 2 samples, each from a different timepoint.
 
 
     Args:
@@ -54,15 +57,13 @@ def load_metadata(file_path: str):
 
         # Check if the required columns are present
         required_columns = {'sample', 'time', 'sample_group'}
-        missing_columns = required_columns - set(df.columns)
-
-        # if columns are missing, raise an error
-        if missing_columns:
-                raise ValueError(f"Missing required column(s): {', '.join(missing_columns)}")
+        check_columns(df, req_cols = required_columns)
+        check_sample_group(df)
         return df
+
     # if file path is bad, raise an error
     except Exception as e:
-        raise ValueError(f"Error file not found at {file_path}: {e}")
+        raise ValueError(f"Error loading meta data {file_path}: {e}")
     
 
 def load_bulk_growth_rates(file_path: str):
@@ -93,15 +94,12 @@ def load_bulk_growth_rates(file_path: str):
 
         # Check if the required columns are present
         required_columns = {'sample_group', 'bulk_growth_rate_R'}
-        missing_columns = required_columns - set(df.columns)
-
-        # if columns are missing, raise an error
-        if missing_columns:
-                raise ValueError(f"Missing required column(s): {', '.join(missing_columns)}")
+        check_columns(df, req_cols = required_columns)
         return df
+
     # if file path is bad, raise an error
     except Exception as e:
-        raise ValueError(f"Error file not found at {file_path}: {e}")
+        raise ValueError(f"Error loading growth data {file_path}: {e}")
 
 
 def est_growth(df, time_meta, pop_growths):

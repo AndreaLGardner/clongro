@@ -2,7 +2,7 @@
 
 import argparse
 import polars as pl
-#import numpy as np
+import os
 from .core import load_data, load_metadata, load_bulk_growth_rates, est_growth#* # new_function
 
 def main():
@@ -44,6 +44,10 @@ def main():
 
         if args.drop_empty is True:
             outs = outs.drop_nulls().drop(["sample","time","timef"])
+
+        # check if output directory exists, if not create it
+        if not os.path.exists('outs'):
+            os.makedirs('outs')
 
         # save outputs to csv
         if args.outs is None:
