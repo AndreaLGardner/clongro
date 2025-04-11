@@ -37,7 +37,7 @@ R : \text{ Growth rate of bulk population } [h^{-1}]\\
 
 ___
 
-###### Derivation 
+###### Derivation
 First, we show how to determine the exponential growth rate of a bulk population from:
 
 ```math
@@ -62,7 +62,7 @@ Solving for clonal growth rate ${r}_i$ as:
 r_i = {\dfrac{1}{t}}ln\Biggl({\dfrac{{N_f}_i}{{N_0}_i}}\Biggr)
 ```
 
-From targeted barcode sequencing data, we can find clonal abundance as the percent of each clone in the population (${percent}_{i}$). If we know the size of the bulk population (${N_{pop}}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
+From targeted barcode sequencing data, we can find clonal abundance as the percent of each clone in the population ($percent_{i}$). If we know the size of the bulk population ($N_{pop}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
 
 ```math
 N_i = {N_{pop}}\biggl(\dfrac{percent_i}{100}\biggr)
@@ -86,16 +86,14 @@ In this form, we note that the first term on the right side of the equation is s
 r_i = R + {\dfrac{1}{t}}ln\biggl(\dfrac{{percent_i}_f}{{percent_i}_0}\biggr)
 ```
 
-`clongro` uses the percent of each clone from targeted barcode sequencing and the time between each targeted sequencing run to calculate this growth rate scaling factor for each clone. 
+`clongro` uses the percent of each clone from targeted barcode sequencing and the time between each targeted sequencing run to calculate this growth rate scaling factor for each clone.
 
 If the growth rate of the bulk population $R$, is known, then true growth rate estimates can be determined for each clone by simply adding this scaling factor to the bulk growth rate. `clongro` returns these values as `est_r_i_scaled` in the output csv.
 
 If the growth rate of the bulk population R is not known, then `clongro` uses $R=0$ and returns the computed scaling factor as the unscaled estimate for growth rate of each clone. Even without a known bulk population growth rate ($R$), the unscaled estimates for $r_i$ encode for relative relationships between clones and can be used to identify clones that are growing faster (`est_r_i > 0`) or slower (`est_r_i < 0`) than the bulk population.
 
-
-
-
 ### Required inputs
+
 `clongro` requires two input tsv/csv files and can be run simply as:
 
 ```
@@ -113,7 +111,7 @@ clongro --data {PATH_TO_YOUR_BARCODE_DATA} --meta {PATH_TO_YOUR_METADATA}
 | my_barcoded_cells_late  | 840  | A            |
 
 
-Each 'sample_group' must map to EXACTLY two samples, one denoting the initial timepoint and the other denoting the later timepoint. 'sample_group' can be used to estimate growth rates of clones from separate experiments in a single run of clongro, e.g. 
+Each 'sample_group' must map to EXACTLY two samples, one denoting the initial timepoint and the other denoting the later timepoint. 'sample_group' can be used to estimate growth rates of clones from separate experiments in a single run of clongro, e.g.
 
 | sample     | time | sample_group |
 |------------|------|--------------|
@@ -126,19 +124,20 @@ Each 'sample_group' must map to EXACTLY two samples, one denoting the initial ti
 When `clongro` is run with just `--data` and `--meta`, it will return a csv (default: `outs/clongro_outs.csv`) which contains unscaled, relative estimates of clonal growth rates for each clonal population that was detected and quantified in both timepoints. Barcodes which were not identified in both timepoints will return null for growth rates.
 
 
-
 ### Optional inputs to estimate true growth rate
 
 ##### Single population growth rate for all sample groups
+
 If you are only running one 'sample_group' or all 'sample_group's are estimated to have the same bulk population growth rate ($R$), then the bulk population growth rate in $h^{-1}$ can be supplied at the command line. To call this option at the command line, use the `--pop-growth-rate` flag, i.e.:
 
 ```
 clongro --data {PATH_TO_YOUR_BARCODE_DATA} --meta {PATH_TO_YOUR_METADATA} --pop-growth-rate 0.02
 ```
+
 `clongro` will return a csv (default: `outs/clongro_outs.csv`) with scaled estimates of clonal growth rates for each barcode that was detected and quantified in both timepoints. Barcodes which were not identified in both timepoints will return null for growth rates.
 
-
 ##### Different growth rates for each 'sample_group'
+
 If you are running clongro with 'sample_group's that are expected to have the different bulk population growth rates ($R$), then a csv should be provided mapping each 'sample_group' to its known bulk population growth rate.
 
 Data must have named columns for 'sample_group' and 'bulk_growth_rate_R' in inverse hours $h^{-1}$. Groups in 'sample_group' must match those in the sample metadata. The mean population growth rate (`bulk_growth_rate_R`) can be estimated from cell counting, live-cell imaging, or other methods. Providing this file is optional, but it will allow for true estimates of clonal growth rates within each 'sample_group'. An example is below:
@@ -153,6 +152,7 @@ To call this option at the command line, use the `--growths` flag and point to a
 ```
 clongro --data {PATH_TO_YOUR_BARCODE_DATA} --meta {PATH_TO_YOUR_METADATA} --growths {PATH_TO_GROWTH_RATE_METADATA}
 ```
+
 `clongro` will return a csv (default: `outs/clongro_outs.csv`) with scaled estimates of clonal growth rates for each barcode in each 'sample_group' that was detected and quantified in both timepoints for that 'sample_group'. Barcodes which were not identified in both timepoints will return null for growth rates.
 
 
@@ -187,25 +187,29 @@ Or if sequential passaging was performed, the 'sample_group' column can contain 
 
 
 ### Running example data
+
 Two data sets are provided which can be run as examples, to learn more about the unique setups in each experiment, reference the ABOUT.md files in each test_data subdirectory.
 
 To run test data set #1
+
 ```
 clongro --data data/test_data_1/data.tsv --meta data/test_data_1/meta.csv --pop-growth-rate 0.02 --outs clongro_test_data_1_outs
 ```
 
 To run test data set #2
+
 ```
 clongro --data data/test_data_2/data.tsv --meta data/test_data_2/meta.csv --growths data/test_data_2/bulk_growth_rates.csv --outs clongro_test_data_2_outs
 ```
 
-
 ### Understanding outputs
+
 The returned outputs will retain columns supplied in the meta data files and will minimally have columns for 'barcode', 'sample_group', 'interval', 'duration', 'est_r_i', 'bulk_growth', and 'est_r_i_scaled'.
 
 Barcodes which were not detected in both timepoints are removed by default, to return all data including null values in the output, use the flag `--drop-empty False`
 
 Column info:
+
 - **barcode**: name of the clone
 - **sample_group**: the group containing the set of before and after data used to estimate this growth rate
 - **interval**: exact time interval used for this calculation, i.e. time0_timef $[h]$
