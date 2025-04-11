@@ -112,3 +112,4 @@ ENV/
 data/broken_data.csv
 data/broken_meta.csv
 test.qmd
+outs/
