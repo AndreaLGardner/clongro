@@ -123,7 +123,7 @@ def est_growth(df, time_meta, pop_growths):
     """
     # if one sample is part of multiple groups, add a new row in the time meta data that sample
     # for each sample_group it is part of
-    time_meta = time_meta.with_columns(pl.col("sample_group").str.split(",")).explode("sample_group")
+    time_meta = time_meta.with_columns(pl.col("sample_group").str.split(";")).explode("sample_group")
     
 
     # using polars, select columns for barcode, sample, and percent, then join to time_meta

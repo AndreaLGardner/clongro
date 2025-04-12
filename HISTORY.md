@@ -1,6 +1,9 @@
 
 # History
 
+### 0.1.3 (2025-04-12)
+- Updated multiple sample_group formatting to require semicolon separation in instead of comma.
+
 ### 0.1.3 (2025-04-10)
 - Found bug in multiple sample_group handling, fixed.
 

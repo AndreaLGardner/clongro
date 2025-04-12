@@ -159,30 +159,30 @@ clongro --data {PATH_TO_YOUR_BARCODE_DATA} --meta {PATH_TO_YOUR_METADATA} --grow
 
 ### More complex meta data 'sample_group' examples
 
-In the meta data file, 'sample_group' can also be used to map a single sample to multiple groups using comma separation, such as the case where multiple replicates are split off from a shared initial timepoint, e.g.
+In the meta data file, 'sample_group' can also be used to map a single sample to multiple groups using semicolon separation, such as the case where multiple replicates are split off from a shared initial timepoint, e.g.
 
 | sample                      | time | sample_group |
 |-----------------------------|------|--------------|
-| my_barcoded_cells_early     | 0    | A,B,C,D,E    |
+| my_barcoded_cells_early     | 0    | A;B;C;D;E    |
 | my_barcoded_cells_late_rep1 | 840  | A            |
 | my_barcoded_cells_late_rep2 | 840  | B            |
 | my_barcoded_cells_late_rep3 | 840  | C            |
 | my_barcoded_cells_late_rep4 | 840  | D            |
 | my_barcoded_cells_late_rep5 | 840  | E            |
 
-Or if sequential passaging was performed, the 'sample_group' column can contain multiple groups separated by commas to indicate use as the initial timepoint for one 'sample_group' and the final timepoint for another from as in one of the example data sets provided:
+Or if sequential passaging was performed, the 'sample_group' column can contain multiple groups separated by semicolons to indicate use as the initial timepoint for one 'sample_group' and the final timepoint for another from as in one of the example data sets provided:
 
 `data/test_data_1/meta.csv`
 | sample           | sample_group | passage | time |
 |------------------|--------------|---------|------|
 | JA21116-libB3    | A            | 15      | 0    |
-| JA22214-1KB3-P17 | A,B          | 17      | 144  |
-| JA22214-1KB3-P19 | B,C          | 19      | 288  |
-| JA22214-1KB3-P21 | C,D          | 21      | 432  |
-| JA22214-1KB3-P23 | D,E          | 23      | 576  |
-| JA22214-1KB3-P25 | E,F          | 25      | 720  |
-| JA22214-1KB3-P27 | F,G          | 27      | 864  |
-| JA22214-1KB3-P29 | G,H          | 29      | 1008 |
+| JA22214-1KB3-P17 | A;B          | 17      | 144  |
+| JA22214-1KB3-P19 | B;C          | 19      | 288  |
+| JA22214-1KB3-P21 | C;D          | 21      | 432  |
+| JA22214-1KB3-P23 | D;E          | 23      | 576  |
+| JA22214-1KB3-P25 | E;F          | 25      | 720  |
+| JA22214-1KB3-P27 | F;G          | 27      | 864  |
+| JA22214-1KB3-P29 | G;H          | 29      | 1008 |
 | JA22214-1KB3-P31 | H            | 31      | 1152 |
 
 

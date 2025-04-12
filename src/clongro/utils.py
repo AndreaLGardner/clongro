@@ -14,7 +14,7 @@ def check_columns(df, req_cols = {}):
 def check_sample_group(df):
         invalid_groups = (
                 df.with_columns(
-                        pl.col("sample_group").str.split(","))
+                        pl.col("sample_group").str.split(";"))
                         .explode("sample_group")
                         .group_by("sample_group")
                         .agg(pl.col("sample").n_unique().alias("n_samples"))
