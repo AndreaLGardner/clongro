@@ -62,7 +62,7 @@ Solving for clonal growth rate ${r}_i$ as:
 r_i = {\dfrac{1}{t}}ln\Biggl({\dfrac{{N_f}_i}{{N_0}_i}}\Biggr)
 ```
 
-From targeted barcode sequencing data, we can find clonal abundance as the percent of each clone in the population (${percent}_{i}$). If we know the size of the bulk population (${N_{pop}}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
+From targeted barcode sequencing data, we can find clonal abundance as the percent of each clone in the population ($p_i$). If we know the size of the bulk population ($N_{pop}$) and the percent of each clone within the total population, then for each clone $i$, it's total cell number in the population can be computed as:
 
 ```math
 N_i = {N_{pop}}\biggl(\dfrac{p_i}{100}\biggr)
